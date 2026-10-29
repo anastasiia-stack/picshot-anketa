@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Анкета кандидата · PicShot Studio</title>
+<meta name="description" content="Анкета кандидата PicShot Studio."><meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Questrial&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0f0e0c; --surface:#171512; --surface-2:#1e1b17;
+    --line:rgba(243,239,231,.12); --line-strong:rgba(243,239,231,.24);
+    --text:#f3efe7; --muted:#a49d90; --accent:#f0782f; --accent-ink:#1a0c03;
+    --error:#e07a5f;
+    --sans:"Century Gothic","Questrial",system-ui,sans-serif;
+    --serif:"Fraunces",Georgia,serif;
+  }
+  *{box-sizing:border-box;margin:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  @media(max-width:640px){.wrap{padding:0 16px}}
+
+  header{display:flex;justify-content:space-between;align-items:center;padding:28px 0}
+  .logo{font-family:var(--serif);font-size:20px;letter-spacing:.02em;text-decoration:none}
+  .logo span{color:var(--accent)}
+
+  .hero{padding:56px 0 64px;border-bottom:1px solid var(--line)}
+  .eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:28px}
+  h1{font-family:var(--serif);font-weight:300;font-size:clamp(36px,6vw,68px);line-height:1.02;letter-spacing:-.02em;max-width:14ch}
+  h1 em{font-style:italic;color:var(--accent)}
+  .lead{max-width:56ch;color:var(--muted);font-size:18px;margin-top:32px}
+
+  section{padding:56px 0 80px;border-bottom:1px solid var(--line)}
+  @media(max-width:640px){section{padding:64px 0}}
+  h2{font-family:var(--serif);font-weight:300;font-size:clamp(30px,4.5vw,48px);line-height:1.1;letter-spacing:-.01em;margin-bottom:16px}
+  .sub{color:var(--muted);max-width:60ch}
+
+  .about{padding:64px 0}
+  .perks{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:40px}
+  .perk{background:var(--bg);padding:28px 24px}
+  .perk b{display:block;font-family:var(--serif);font-weight:300;font-size:clamp(26px,3.4vw,36px);line-height:1.1;color:var(--text)}
+  .perk span{display:block;margin-top:8px;color:var(--muted);font-size:14px}
+  @media(max-width:800px){.perks{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:480px){.perks{grid-template-columns:1fr}.perk{padding:20px}}
+  .dirs{margin-top:48px}
+  .dirs h3{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:400;margin-bottom:12px}
+  .dirs ul{list-style:none;padding:0;counter-reset:d;max-width:480px}
+  .dirs li{counter-increment:d;display:flex;gap:20px;align-items:baseline;padding:16px 0;border-bottom:1px solid var(--line);font-family:var(--serif);font-weight:300;font-size:24px}
+  .dirs li::before{content:"0" counter(d);font-family:var(--sans);font-size:13px;color:var(--accent)}
+  .form-card{margin-top:24px;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:48px}
+  @media(max-width:640px){.form-card{padding:24px 18px;border-radius:14px}}
+  fieldset{border:0;padding:0;margin:0 0 36px}
+  legend{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:18px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 20px}
+  .full{grid-column:1/-1}
+  @media(max-width:640px){.grid{grid-template-columns:1fr}}
+  label{display:block;font-size:14px;margin-bottom:8px;color:var(--text)}
+  label .req{color:var(--accent)}
+  label .hint{color:var(--muted);font-size:13px}
+  input,select,textarea{width:100%;font:inherit;color:var(--text);background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:13px 14px;transition:border-color .15s}
+  input::placeholder,textarea::placeholder{color:#6f695f}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent)}
+  select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);background-position:calc(100% - 20px) 50%,calc(100% - 15px) 50%;background-size:5px 5px;background-repeat:no-repeat;padding-right:40px}
+  select option{background:var(--surface-2)}
+  textarea{min-height:110px;resize:vertical}
+  .money{display:grid;grid-template-columns:1fr 96px;gap:8px}
+  .touched:invalid{border-color:var(--error)}
+
+  .consent{display:flex;gap:12px;align-items:flex-start;font-size:14px;color:var(--muted);margin:8px 0 28px}
+  .consent input{width:18px;height:18px;margin-top:3px;flex:none;accent-color:var(--accent)}
+  .hp{position:absolute;left:-9999px;opacity:0}
+  button{font:inherit;font-weight:600;border:0;cursor:pointer;background:var(--accent);color:var(--accent-ink);padding:16px 32px;border-radius:999px;transition:opacity .2s,transform .2s}
+  button:hover{transform:translateY(-2px)}
+  button:disabled{opacity:.6;cursor:wait;transform:none}
+  .err{margin-top:16px;color:var(--error);font-size:14px}
+  .success{text-align:center;padding:40px 0}
+  .success h3{font-family:var(--serif);font-weight:300;font-size:40px;margin-bottom:12px}
+  .success p{color:var(--muted);max-width:46ch;margin:0 auto}
+
+  footer{padding:40px 0 56px;color:var(--muted);font-size:13px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="logo" href="https://picshotstudio.com">PicShot<span>.</span> Studio</a>
+  </header>
+
+  <div class="hero">
+    <p class="eyebrow">PicShot Studio · Анкета кандидата</p>
+    <h1>Раді знайомству<span id="hi-name"></span>. <em>Розкажіть трохи більше.</em></h1>
+    <p class="lead">Дякуємо, що відгукнулися! Нижче — коротко про нас і умови роботи, а далі анкета. Вона займе близько 5 хвилин.</p>
+  </div>
+
+  <section class="about">
+    <h2>Коротко про нас</h2>
+    <p class="sub">PicShot Studio — бутикова студія 2D-арту та анімації. Працюємо понад 7 років, зробили 250+ проєктів, у команді близько 20 людей.</p>
+    <p class="sub" style="margin-top:12px">Для нас дуже важлива якість, тому ми свідомо працюємо у форматі бутик-студії: нас небагато, і кожен проєкт ми робимо на максимум.</p>
+    <div class="perks">
+      <div class="perk"><b>Full-time</b><span>Повна зайнятість і довгострокова співпраця</span></div>
+      <div class="perk"><b>Remote</b><span>Працюємо віддалено, з будь-якої точки</span></div>
+      <div class="perk"><b>20</b><span>днів відпустки на рік</span></div>
+      <div class="perk"><b>7</b><span>днів лікарняних на рік</span></div>
+      <div class="perk"><b>Подарунки</b><span>від студії для команди</span></div>
+      <div class="perk"><b>Онлайн-корпоративи</b><span>для всієї команди</span></div>
+    </div>
+    <div class="dirs">
+      <h3>Напрямки в компанії</h3>
+      <ul>
+        <li>2D-художник</li>
+        <li>Лід-художник</li>
+        <li>Spine-аніматор</li>
+        <li>Проєктний менеджер</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="apply">
+    <h2>Анкета</h2>
+    <p class="sub">Поля із зірочкою обов'язкові.</p>
+
+    <div class="form-card">
+      <form id="form" novalidate>
+        <fieldset>
+          <legend>Про вас</legend>
+          <div class="grid">
+            <div><label for="name">Ім'я та прізвище <span class="req">*</span></label><input id="name" name="name" required autocomplete="name"></div>
+            <div><label for="email">Email <span class="req">*</span></label><input id="email" name="email" type="email" required autocomplete="email"></div>
+            <div><label for="telegram">Telegram</label><input id="telegram" name="telegram" placeholder="@username"></div>
+            <div><label for="country">Країна <span class="req">*</span></label><input id="country" name="country" required autocomplete="country-name"></div>
+            <div><label for="city">Місто</label><input id="city" name="city" autocomplete="address-level2"></div>
+            <div><label for="english">Англійська</label>
+              <select id="english" name="english"><option value="">—</option><option>A1–A2</option><option>B1</option><option>B2</option><option>C1–C2</option></select></div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Досвід</legend>
+          <div class="grid">
+            <div><label for="role">Вакансія <span class="req">*</span></label>
+              <select id="role" name="role" required><option value="">Оберіть</option><option>2D-художник</option><option>Лід-художник</option><option>Spine-аніматор</option><option>Проєктний менеджер</option></select></div>
+            <div><label for="level">Рівень</label>
+              <select id="level" name="level"><option value="">—</option><option>Junior</option><option>Middle</option><option>Senior</option><option>Lead</option></select></div>
+            <div><label for="experience">Досвід у gamedev / iGaming, років</label><input id="experience" name="experience" inputmode="decimal" placeholder="напр. 3"></div>
+            <div><label for="test">Готові до тестового завдання?</label>
+              <select id="test" name="test"><option value="">—</option><option>Так</option><option>Обговоримо</option><option>Ні</option></select></div>
+            <div class="full"><label for="portfolio">Портфоліо <span class="req">*</span> <span class="hint">ArtStation, Behance, Google Drive; для PM — LinkedIn або CV</span></label><input id="portfolio" name="portfolio" required placeholder="https://"></div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Умови</legend>
+          <div class="grid">
+            <div><label for="salary">Очікування по зарплаті на місяць <span class="req">*</span></label>
+              <div class="money"><input id="salary" name="salary" required inputmode="numeric" placeholder="напр. 2000"><select name="currency" aria-label="Валюта"><option>USD</option><option>UAH</option></select></div></div>
+            <div><label for="start">Коли можете почати</label><input id="start" name="start" placeholder="напр. одразу, через 2 тижні"></div>
+            <div class="full"><label for="about">Пару слів про себе <span class="hint">що любите робити, чого хочете навчитися</span></label><textarea id="about" name="about"></textarea></div>
+          </div>
+        </fieldset>
+
+        <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+        <label class="consent"><input type="checkbox" id="consent" name="consent" required>
+          <span>Погоджуюсь, що PicShot Studio обробляє мої дані з метою підбору персоналу. Дані зберігаються до 2 років; видалити їх можна будь-коли, написавши на <a data-contact></a>.</span></label>
+
+        <button type="submit" id="submit">Надіслати анкету</button>
+        <p class="err" id="err" hidden>Не вдалося надіслати. Спробуйте ще раз або напишіть нам на <a data-contact></a>.</p>
+      </form>
+
+      <div class="success" id="success" hidden>
+        <h3>Дякуємо!</h3>
+        <p>Анкету отримано. Ми переглянемо відповіді й повернемося до вас із наступними кроками.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© PicShot Studio</span>
+    <span>Питання: <a data-contact></a></span>
+  </footer>
+</div>
+
+<script>
+  // ⚙️ Налаштування: URL веб-застосунку Apps Script і пошта для кандидатів
+  const CONFIG = {
+    SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbxt0w-Vj3ATH1Yye5D96sUIQnKst0445C5NRAUpr8tpw-VCL6_WZbc1vXbgudpA_EjkjQ/exec',
+    CONTACT_EMAIL: 'hr.picshotstudio@gmail.com',
+  };
+
+  document.querySelectorAll('[data-contact]').forEach(a => {
+    a.textContent = CONFIG.CONTACT_EMAIL;
+    a.href = 'mailto:' + CONFIG.CONTACT_EMAIL;
+  });
+
+  const form = document.getElementById('form');
+
+  // підставляємо ім'я та email з персонального посилання (?name=…&email=…)
+  const q = new URLSearchParams(location.search);
+  ['name', 'email'].forEach(k => { const v = q.get(k); if (v) form.elements[k].value = v; });
+  const first = (q.get('name') || '').trim().split(/\s+/)[0];
+  if (first) document.getElementById('hi-name').textContent = ', ' + first;
+  const btn = document.getElementById('submit');
+  const err = document.getElementById('err');
+
+  form.querySelectorAll('input,select,textarea').forEach(el =>
+    el.addEventListener('blur', () => el.classList.add('touched')));
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    err.hidden = true;
+    if (!form.checkValidity()) {
+      form.querySelectorAll('input,select,textarea').forEach(el => el.classList.add('touched'));
+      form.reportValidity();
+      return;
+    }
+    const data = Object.fromEntries(new FormData(form).entries());
+    data.consent = form.consent.checked;
+    data.src = new URLSearchParams(location.search).get('src') || '';
+
+    btn.disabled = true;
+    btn.textContent = 'Надсилаємо…';
+    try {
+      // text/plain без заголовків — так Apps Script приймає запит без CORS-preflight
+      const r = await fetch(CONFIG.SCRIPT_URL, { method: 'POST', body: JSON.stringify(data) });
+      const j = await r.json();
+      if (!j.ok) throw new Error(j.error || 'error');
+      form.hidden = true;
+      document.getElementById('success').hidden = false;
+      document.getElementById('apply').scrollIntoView({ behavior: 'smooth' });
+    } catch (e2) {
+      console.error(e2);
+      err.hidden = false;
+      btn.disabled = false;
+      btn.textContent = 'Надіслати анкету';
+    }
+  });
+</script>
+</body>
+</html>
